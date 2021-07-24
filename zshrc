@@ -78,6 +78,7 @@ plugins=(
   web-search
   history
   extract
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,10 +109,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=$PATH:$HOME/.magento-cloud/bin
+# use ctrl + space to accept autosuggestion
+bindkey '^ ' autosuggest-accept
 
+export PATH=$PATH:$HOME/.magento-cloud/bin
 
 if [ -f  ~/.zsh_aliases ]; then
 . ~/.zsh_aliases
 fi
 
+# changes color and removes green bg for directories on ls
+LS_COLORS="ow=01;36;40" && export LS_COLORS
+
+if [[ -f ~/.dircolors ]] ; then
+    eval $(dircolors -b ~/.dircolors)     
+elif [[ -f /etc/DIR_COLORS ]] ; then
+    eval $(dircolors -b /etc/DIR_COLORS)
+fi
+
+export PATH="/usr/local:$PATH"
