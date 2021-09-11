@@ -6,7 +6,7 @@ alias la="ls -A"
 alias lla="la -l"
 
 #magento cloud
-alias mc="magento-cloud"
+alias mgc="magento-cloud"
 alias cloud-bash="docker-compose run --rm deploy bash"
 
 # ------------------------------------

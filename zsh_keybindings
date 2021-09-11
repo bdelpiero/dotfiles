@@ -1,0 +1,18 @@
+# use ctrl + space to accept autosuggestions
+bindkey '^ ' autosuggest-accept
+
+# One directory up
+function up_widget() {
+	BUFFER="cd .."
+ 	zle accept-line
+} 
+zle -N up_widget
+bindkey "^k" up_widget
+
+# Home - Navigates to the current root workspace
+function git_root() {
+ 	BUFFER="cd $(git rev-parse --show-toplevel || echo ".")"
+	zle accept-line
+}
+zle -N git_root
+bindkey "^h" git_root
