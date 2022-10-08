@@ -80,7 +80,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Run tmux by default
+prompt_dir () {
+  prompt_segment blue black "${PWD##*/}"
+}
+
+# Run hmux by default
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
 ensure_tmux_is_running() {
@@ -90,4 +94,3 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
-
