@@ -55,6 +55,9 @@ call plug#begin()
   Plug 'prettier/vim-prettier'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+  " solidity
+  Plug 'tomlion/vim-solidity'
+
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
