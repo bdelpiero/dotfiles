@@ -1,7 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-
 """ Appearance
 
 " use a line cursor within insert mode and a block cursor everywhere else.
@@ -100,3 +99,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " improved lisp formatter: https://github.com/ds26gte/scmindent
 autocmd bufread,bufnewfile *.lisp,*.scm setlocal equalprg=scmindent.js
+
+" TODO: move everything from vimrc to seperate files
+" netrw config. 
+source ~/dotfiles/vim/better-netrw.vim
