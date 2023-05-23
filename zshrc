@@ -2,13 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/bruno/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_CUSTOM="$HOME/dotfiles/oh-my-zsh/custom"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -26,13 +27,15 @@ plugins=(
   history
   extract
   docker-compose
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/$USER/dotfiles/bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -61,6 +64,9 @@ fi
 export PATH=$PATH:$HOME/.magento-cloud/bin
 export PATH="/usr/local:$PATH"
 
+# MAC OS specific (for making dircolors work)
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+
 # changes color and removes green bg for directories on ls
 LS_COLORS="ow=01;36;40" && export LS_COLORS
 
@@ -70,21 +76,22 @@ elif [[ -f /etc/DIR_COLORS ]] ; then
     eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-  fi
-}
+# prompt_context() {
+#  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+#    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+#  fi
+#}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-prompt_dir () {
-  prompt_segment blue black "${PWD##*/}"
-}
+#prompt_dir () {
+#  prompt_segment blue black "${PWD##*/}"
+#}
 
-# Run hmux by default
+
+# Run tmux by default
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
 ensure_tmux_is_running() {
