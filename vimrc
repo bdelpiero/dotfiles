@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-""" Appearance
+syntax on
 
 " use a line cursor within insert mode and a block cursor everywhere else.
 let &t_SI = "\e[6 q"
@@ -14,14 +14,21 @@ set t_vb=
 set number                     " show current line number
 set relativenumber             " show relative line numbers
 
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
+set autoindent
+set smartindent
 
-""" Remaps
-
+" Remaps
 imap jj <Esc>
+"use leader y/p to copy/paste to clipboard
+"see https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 
 " use ctrl-[hjkl] to select the active split
 nmap <silent> <c-k> :wincmd k<CR>
@@ -37,8 +44,7 @@ nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
 
-""" Plugins
-
+" Plugins
 call plug#begin()
   
   " scheme
@@ -52,7 +58,6 @@ call plug#begin()
   Plug 'leafgarland/typescript-vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'prettier/vim-prettier'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " solidity
   Plug 'tomlion/vim-solidity'
@@ -62,6 +67,7 @@ call plug#begin()
 
   Plug 'christoomey/vim-tmux-navigator'
 
+  Plug 'fxn/vim-monochrome'
 call plug#end()
 
 " tslime 
@@ -83,22 +89,11 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " prettier
 let g:prettier#config#config_precedence = 'file-override'
 
-" coc
-let g:coc_global_extensions = ['coc-tsserver']
-hi CocFloating ctermbg=8
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" make <CR> to accept selected completion item or notify coc.nvim to format
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-" remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " improved lisp formatter: https://github.com/ds26gte/scmindent
 autocmd bufread,bufnewfile *.lisp,*.scm setlocal equalprg=scmindent.js
+
+" colorscheme
+colo paramount
 
 " TODO: move everything from vimrc to seperate files
 " netrw config. 
