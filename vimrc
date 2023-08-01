@@ -68,6 +68,7 @@ call plug#begin()
   Plug 'christoomey/vim-tmux-navigator'
 
   Plug 'fxn/vim-monochrome'
+  Plug 'AhmedAbdulrahman/vim-aylin'
 call plug#end()
 
 " tslime 
@@ -93,7 +94,11 @@ let g:prettier#config#config_precedence = 'file-override'
 autocmd bufread,bufnewfile *.lisp,*.scm setlocal equalprg=scmindent.js
 
 " colorscheme
-colo paramount
+colo aylin
+
+if (has("termguicolors"))
+      set termguicolors
+endif
 
 " TODO: move everything from vimrc to seperate files
 " netrw config. 
