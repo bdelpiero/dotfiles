@@ -5,11 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$HOME/dotfiles/oh-my-zsh/custom"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="typewritten"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -86,10 +82,23 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#prompt_dir () {
-#  prompt_segment blue black "${PWD##*/}"
-#}
+function show_node_version {
+  local dir="$PWD"
+  local light_green="%{$fg[green]%}" # This sets the color to light green
+  local reset_color="%{$reset_color%}" # This resets the color back to the default
 
+  while [ "$dir" != "/" ]; do
+    if [[ -f "$dir/package.json" ]]; then
+      local node_version=$(node -v)
+      echo "${light_green}⬢ $node_version${reset_color}"
+      return
+    fi
+    dir="$(dirname "$dir")"
+  done
+}
+
+
+export TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION=show_node_version
 
 # Run tmux by default
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
