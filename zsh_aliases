@@ -4,14 +4,36 @@ alias mkdir="mkdir -p"     # -p make parent dirs as needed
 alias df="df -h"           # -h prints human readable format
 alias la="ls -A"
 alias lla="la -l"
-
 alias add="code -add"
-
-#magento cloud
-alias mgc="magento-cloud"
-alias cloud-bash="docker-compose run --rm deploy bash"
-
 alias ports="lsof -nP -iTCP -sTCP:LISTEN"
+
+# ------------------------------------
+# MLP alias
+# ------------------------------------
+
+alias mlp='/Users/bruno/bin/startAllServices.sh'
+alias start='/Users/bruno/bin/startService.sh'
+
+# ------------------------------------
+# End - MLP alias
+# ------------------------------------
+
+# ------------------------------------
+# Git alias
+# ------------------------------------
+
+alias gitprunel="git fetch --prune && git branch -r | awk '{print \$1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print \$1}'| xargs git branch -D"
+alias gitpruner="git remote prune origin"
+alias skadush="gitpruner && gitprunel"
+# TODO: f() is not working
+alias nbr="!f() { if [[ \"$1\" == \"feature\" || \"$1\" == \"bugfix\" || \"$1\" == \"integration\" || \"$1\" == \"hotfix\" ]]; then git checkout -b $1/$2; else git checkout -b $2; fi; }; f"
+alias fp="!f() { git push -u origin $(git symbolic-ref --short HEAD); }; f"
+#override current branch with remote version
+alias grr="git fetch && git reset --hard @{u}"
+
+# ------------------------------------
+# End - Git alias
+# ------------------------------------
 
 # ------------------------------------
 # Docker alias and function
